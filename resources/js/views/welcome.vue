@@ -14,6 +14,12 @@ export default {
       <h1 :class="$style.page_title">
         HuntBazaar
       </h1>
+      <RouterLink
+        :to="{ name: 'login' }"
+        class="btn btn-blue btn-block"
+      >
+        Log In
+      </RouterLink>
     </div>
   </div>
 </template>
@@ -30,7 +36,7 @@ export default {
   &_content {
     margin: 0px auto;
     width: 100%;
-    max-width: 690px;
+    max-width: 300px;
     transition: max-width 0.5s ease 0s;
   }
 
@@ -39,6 +45,7 @@ export default {
     font-size: 2.6rem;
     font-weight: 600;
     text-align: center;
+    margin-bottom: 1rem;
   }
 }
 </style>

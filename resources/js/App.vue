@@ -47,54 +47,6 @@ export default {
   </transition>
 </template>
 
-<style>
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-@import '~nprogress/nprogress.css';
-
-:root {
-  --background-color: hsl(0, 0%, 15%);
-  --color-text-default: #494949;
-}
-
-html {
-  font-size: 16px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  line-height: 1.4;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
-  overflow-x: hidden;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  background-color: #f6f6f6;
-  color: var(--color-text-default);
-}
-
-body,
-html {
-  height: 100%;
-  width: 100%;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
+<style lang="scss">
+@import '@design/app.scss';
 </style>

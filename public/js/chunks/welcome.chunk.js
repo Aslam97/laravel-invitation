@@ -30,7 +30,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".resources-js-views-welcome__page {\n  background-color: #fd6a65;\n  margin: 0px auto;\n  width: 100%;\n  height: 100%;\n  transition: max-width 0.5s ease 0s;\n  display: flex;\n  align-items: center;\n}\n.resources-js-views-welcome__page_content {\n  margin: 0px auto;\n  width: 100%;\n  max-width: 690px;\n  transition: max-width 0.5s ease 0s;\n}\n.resources-js-views-welcome__page_title {\n  color: #fff;\n  font-size: 2.6rem;\n  font-weight: 600;\n  text-align: center;\n}", ""]);
+exports.push([module.i, ".resources-js-views-welcome__page {\n  background-color: var(--background-color);\n  margin: 0px auto;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  align-items: center;\n}\n.resources-js-views-welcome__page_content {\n  margin: 0px auto;\n  width: 100%;\n  max-width: 300px;\n  transition: max-width 0.5s ease 0s;\n}\n.resources-js-views-welcome__page_title {\n  color: #fff;\n  font-size: 2.6rem;\n  font-weight: 600;\n  text-align: center;\n  margin-bottom: 1rem;\n}", ""]);
 
 // exports
 exports.locals = {
@@ -87,51 +87,30 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { class: _vm.$style.page }, [
-    _c("div", { class: _vm.$style.page_content }, [
-      _c("h1", { class: _vm.$style.page_title }, [
-        _vm._v("\n      HuntBazaar\n    ")
-      ])
-    ])
+    _c(
+      "div",
+      { class: _vm.$style.page_content },
+      [
+        _c("h1", { class: _vm.$style.page_title }, [
+          _vm._v("\n      HuntBazaar\n    ")
+        ]),
+        _vm._v(" "),
+        _c(
+          "RouterLink",
+          {
+            staticClass: "btn btn-blue btn-block",
+            attrs: { to: { name: "login" } }
+          },
+          [_vm._v("\n      Log In\n    ")]
+        )
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
 render._withStripped = true
 
-
-
-/***/ }),
-
-/***/ "./node_modules/webpack/buildin/harmony-module.js":
-/*!*******************************************!*\
-  !*** (webpack)/buildin/harmony-module.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = function(originalModule) {
-	if (!originalModule.webpackPolyfill) {
-		var module = Object.create(originalModule);
-		// module.parent = undefined by default
-		if (!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		Object.defineProperty(module, "exports", {
-			enumerable: true
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
 
 
 /***/ }),
