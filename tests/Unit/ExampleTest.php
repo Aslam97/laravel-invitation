@@ -2,17 +2,21 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use App\Admin;
+use App\User;
+use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
+    public function test_admin_can_be_instantiated()
     {
-        $this->assertTrue(true);
+        $admin = factory(Admin::class, 1)->make();
+        $this->assertTrue(!$admin->isEmpty());
+    }
+
+    public function test_user_can_be_instantiated()
+    {
+        $user = factory(User::class, 1)->make();
+        $this->assertTrue(!$user->isEmpty());
     }
 }
