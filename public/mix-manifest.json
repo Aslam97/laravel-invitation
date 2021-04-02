@@ -1,4 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
-    "/js/app.js.map": "/js/app.js.map"
+    "/js/app.js.map": "/js/app.js.map",
+    "/js/chunks/welcome.chunk.js": "/js/chunks/welcome.chunk.js",
+    "/js/chunks/welcome.chunk.js.map": "/js/chunks/welcome.chunk.js.map"
 }

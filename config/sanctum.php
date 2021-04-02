@@ -14,5 +14,4 @@ return [
     ],
 
     'prefix' => 'api/csrf',
-
 ];
