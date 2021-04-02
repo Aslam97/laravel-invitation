@@ -20,11 +20,10 @@ export default {
 
 <style lang="scss" module>
 .page {
-  background-color: #fd6a65;
+  background-color: var(--background-color);
   margin: 0px auto;
   width: 100%;
   height: 100%;
-  transition: max-width 0.5s ease 0s;
   display: flex;
   align-items: center;
 

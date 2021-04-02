@@ -52,7 +52,7 @@ export default {
 @import '~nprogress/nprogress.css';
 
 :root {
-  --color-text-title: #000;
+  --background-color: hsl(0, 0%, 15%);
   --color-text-default: #494949;
 }
 

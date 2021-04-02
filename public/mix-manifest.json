@@ -1,6 +1,4 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/js/app.js.map": "/js/app.js.map",
-    "/js/chunks/welcome.chunk.js": "/js/chunks/welcome.chunk.js",
-    "/js/chunks/welcome.chunk.js.map": "/js/chunks/welcome.chunk.js.map"
+    "/js/chunks/9bbc1e4b.chunk.js": "/js/chunks/9bbc1e4b.chunk.js?id=f488cd1c31551cd8e55f",
+    "/js/app.js": "/js/app.js?id=3a98ba998566858b5d0f"
 }
