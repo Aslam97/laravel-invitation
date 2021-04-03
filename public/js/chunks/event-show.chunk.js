@@ -39,14 +39,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('event', ['event'])),
   mounted: function mounted() {
     this.model.event_id = this.$route.params.id;
-    this.$store.dispatch('event/show', this.$route.params.id);
+    this.initEvent();
   },
   methods: {
     onSubmit: function onSubmit() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var errors;
+        var _yield$_this$$store$d, message, errors;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -57,24 +58,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _this.$store.dispatch('invitation/store', _this.model);
 
               case 4:
-                _context.next = 11;
+                _yield$_this$$store$d = _context.sent;
+                message = _yield$_this$$store$d.message;
+                _this.model.email = '';
+
+                _this.$refs.formInvitation.reset();
+
+                _this.$notify({
+                  title: 'Success',
+                  type: 'success',
+                  message: message
+                });
+
+                _this.initEvent();
+
+                _context.next = 17;
                 break;
 
-              case 6:
-                _context.prev = 6;
+              case 12:
+                _context.prev = 12;
                 _context.t0 = _context["catch"](1);
                 errors = _context.t0.data.errors;
                 _this.tryToSubmit = false;
 
                 _this.$refs.formInvitation.setErrors(errors);
 
-              case 11:
+              case 17:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 6]]);
+        }, _callee, null, [[1, 12]]);
       }))();
+    },
+    initEvent: function initEvent() {
+      this.$store.dispatch('event/show', this.$route.params.id);
     }
   }
 });
@@ -109,16 +127,14 @@ var render = function() {
             fn: function(ref) {
               var handleSubmit = ref.handleSubmit
               return [
-                _c("h3", [_vm._v("Event Name")]),
+                _c("h3", [_vm._v("Event")]),
                 _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
-                _c("code", [
-                  _vm._v(
-                    "\n      " +
-                      _vm._s(JSON.stringify(_vm.event, undefined, 2)) +
-                      "\n    "
-                  )
+                _c("ul", [
+                  _c("li", [_vm._v("Name: " + _vm._s(_vm.event.name))]),
+                  _vm._v(" "),
+                  _c("li", [_vm._v("Expired: " + _vm._s(_vm.event.expired_at))])
                 ]),
                 _vm._v(" "),
                 _c("div", [_c("br")]),
@@ -148,7 +164,8 @@ var render = function() {
                           attrs: {
                             name: "Email",
                             rules: "required|email",
-                            label: true
+                            label: true,
+                            vid: "email"
                           },
                           model: {
                             value: _vm.model.email,
@@ -168,7 +185,39 @@ var render = function() {
                       1
                     )
                   ]
-                )
+                ),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("h3", [_vm._v("Invitations")]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _vm.event.invitations.length
+                  ? _c(
+                      "ul",
+                      _vm._l(_vm.event.invitations, function(invitation) {
+                        return _c("li", { key: invitation.id }, [
+                          _c("div", [
+                            _vm._v("Email: " + _vm._s(invitation.email))
+                          ]),
+                          _vm._v(" "),
+                          _c("div", [
+                            _vm._v(
+                              "\n          Status: " +
+                                _vm._s(
+                                  invitation.registration_code
+                                    ? "Success"
+                                    : "Pending"
+                                ) +
+                                "\n        "
+                            )
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  : _c("div", [_vm._v("\n      No Result\n    ")])
               ]
             }
           }

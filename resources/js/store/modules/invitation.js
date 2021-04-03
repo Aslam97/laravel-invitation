@@ -30,6 +30,28 @@ export const actions = {
     })
   },
 
+  join(_, payload) {
+    return new Promise((resolve, reject) => {
+      axios
+        .put('/api/invitations/join', payload)
+        .then(({ data }) => resolve(data))
+        .catch(({ response }) => reject(response))
+    })
+  },
+
+  show({ commit }, id) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`/api/invitations/${id}`)
+        .then(({ data }) => {
+          const { data: invitation } = data
+          commit('setInvitation', invitation)
+          resolve(data)
+        })
+        .catch(({ response }) => reject(response))
+    })
+  },
+
   validate({ commit }, payload) {
     return new Promise((resolve, reject) => {
       axios

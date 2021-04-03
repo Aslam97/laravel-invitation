@@ -27,5 +27,11 @@ export default [
     component: loadView('event/show.vue')
   },
 
+  {
+    path: '/invitations/success/:id',
+    name: 'invitation.success',
+    component: loadView('invitation/success.vue')
+  },
+
   { path: '*', component: loadView('errors/404.vue') }
 ]

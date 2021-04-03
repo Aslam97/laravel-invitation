@@ -12,7 +12,19 @@ class Invitation extends Model
     use Notifiable;
 
     protected $fillable = [
-        'event_id', 'email', 'code', 'registered_at',
+        'event_id',
+        'name',
+        'email',
+        'code',
+        'bod',
+        'gender',
+        'favorite_designer',
+        'registration_code',
+        'registered_at',
+    ];
+
+    protected $casts = [
+        'favorite_designer' => 'array',
     ];
 
     public function event()

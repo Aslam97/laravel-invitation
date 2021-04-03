@@ -12,5 +12,7 @@
     "/js/chunks/home.chunk.js": "/js/chunks/home.chunk.js",
     "/js/chunks/home.chunk.js.map": "/js/chunks/home.chunk.js.map",
     "/js/chunks/welcome.chunk.js": "/js/chunks/welcome.chunk.js",
-    "/js/chunks/welcome.chunk.js.map": "/js/chunks/welcome.chunk.js.map"
+    "/js/chunks/welcome.chunk.js.map": "/js/chunks/welcome.chunk.js.map",
+    "/js/chunks/invitation-success.chunk.js": "/js/chunks/invitation-success.chunk.js",
+    "/js/chunks/invitation-success.chunk.js.map": "/js/chunks/invitation-success.chunk.js.map"
 }

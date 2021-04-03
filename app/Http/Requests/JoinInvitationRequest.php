@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateInvitationRequest extends FormRequest
+class JoinInvitationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,12 @@ class UpdateInvitationRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'name' => 'required|string',
-            'bod' => 'required',
-            'gender' => 'required',
-            'favorite_designer' => 'required',
+            'code' => ['required', 'string'],
+            'name' => ['required', 'string'],
+            'bod' => ['required', 'date'],
+            'gender' => ['required', 'string', 'in:M,F'],
+            'favorite_designer' => ['required', 'array', 'min:1'],
+            'favorite_designer.*' => ['required', 'string', 'distinct'],
         ];
     }
 }

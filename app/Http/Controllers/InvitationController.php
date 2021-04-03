@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Events\InvitationCreated;
+use App\Http\Requests\JoinInvitationRequest;
 use App\Http\Requests\StoreInvitationRequest;
 use App\Http\Resources\InvitationResource;
 use App\Invitation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class InvitationController extends Controller
 {
@@ -54,6 +56,41 @@ class InvitationController extends Controller
         $validatedData = $request->validate(['code' => 'required']);
 
         $invitation = Invitation::where('code', $validatedData['code'])->firstOrFail();
+        return new InvitationResource($invitation);
+    }
+
+    /**
+     * Join invitation
+     *
+     * @param  \App\Http\Requests\JoinInvitationRequest $request
+     * @return \App\Http\Resources\InvitationResource
+     */
+    public function join(JoinInvitationRequest $request)
+    {
+        $validatedData = $request->validated();
+
+        $validatedData['favorite_designer'] = json_encode($validatedData['favorite_designer']);
+        $validatedData['registration_code'] = 'HTT' . substr(time(), 0, 6);
+        $validatedData['registered_at'] = now();
+
+        $invitation = Invitation::where('code', $validatedData['code'])->firstOrFail();
+        $invitation->update($validatedData);
+
+        return (new InvitationResource($invitation))->additional([
+            'message' => 'Joined Successful.',
+        ]);
+    }
+
+    /**
+     * Show invitation
+     *
+     * @param  int $id
+     * @return \App\Http\Resources\InvitationResource
+     */
+    public function show($id)
+    {
+        $invitation = Invitation::findOrFail($id);
+
         return new InvitationResource($invitation);
     }
 

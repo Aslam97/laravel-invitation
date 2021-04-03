@@ -18,7 +18,7 @@ export default {
 
   mounted() {
     this.model.event_id = this.$route.params.id
-    this.$store.dispatch('event/show', this.$route.params.id)
+    this.initEvent()
   },
 
   methods: {
@@ -26,7 +26,21 @@ export default {
       this.tryToSubmit = true
 
       try {
-        await this.$store.dispatch('invitation/store', this.model)
+        const { message } = await this.$store.dispatch(
+          'invitation/store',
+          this.model
+        )
+
+        this.model.email = ''
+        this.$refs.formInvitation.reset()
+
+        this.$notify({
+          title: 'Success',
+          type: 'success',
+          message
+        })
+
+        this.initEvent()
       } catch (e) {
         const {
           data: { errors }
@@ -35,6 +49,10 @@ export default {
         this.tryToSubmit = false
         this.$refs.formInvitation.setErrors(errors)
       }
+    },
+
+    initEvent() {
+      this.$store.dispatch('event/show', this.$route.params.id)
     }
   }
 }
@@ -47,11 +65,12 @@ export default {
       v-slot="{ handleSubmit }"
       class="container"
     >
-      <h3>Event Name</h3>
+      <h3>Event</h3>
       <br>
-      <code>
-        {{ JSON.stringify(event, undefined, 2) }}
-      </code>
+      <ul>
+        <li>Name: {{ event.name }}</li>
+        <li>Expired: {{ event.expired_at }}</li>
+      </ul>
 
       <div><br></div>
 
@@ -68,6 +87,7 @@ export default {
             name="Email"
             rules="required|email"
             :label="true"
+            vid="email"
           />
 
           <button class="btn btn-blue btn-block btn-md">
@@ -75,6 +95,24 @@ export default {
           </button>
         </div>
       </form>
+      <br>
+
+      <h3>Invitations</h3>
+      <br>
+      <ul v-if="event.invitations.length">
+        <li
+          v-for="invitation in event.invitations"
+          :key="invitation.id"
+        >
+          <div>Email: {{ invitation.email }}</div>
+          <div>
+            Status: {{ invitation.registration_code ? 'Success' : 'Pending' }}
+          </div>
+        </li>
+      </ul>
+      <div v-else>
+        No Result
+      </div>
     </ValidationObserver>
   </div>
 </template>

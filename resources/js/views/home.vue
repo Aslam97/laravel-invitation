@@ -28,10 +28,7 @@ export default {
       <h3>List Events</h3>
       <br>
 
-      <div
-        v-if="user && user.is_admin"
-        class="card"
-      >
+      <div class="card">
         <div class="card-body">
           <ul>
             <li
@@ -44,9 +41,6 @@ export default {
             </li>
           </ul>
         </div>
-      </div>
-      <div v-else>
-        This is User
       </div>
 
       <br>

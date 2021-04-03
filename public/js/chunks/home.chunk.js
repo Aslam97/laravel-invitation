@@ -82,40 +82,38 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _vm.user && _vm.user.is_admin
-        ? _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c(
-                "ul",
-                _vm._l(_vm.events, function(event) {
-                  return _c(
-                    "li",
-                    { key: event.id },
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "ul",
+            _vm._l(_vm.events, function(event) {
+              return _c(
+                "li",
+                { key: event.id },
+                [
+                  _c(
+                    "RouterLink",
+                    {
+                      attrs: {
+                        to: { name: "events", params: { id: event.id } }
+                      }
+                    },
                     [
-                      _c(
-                        "RouterLink",
-                        {
-                          attrs: {
-                            to: { name: "events", params: { id: event.id } }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n              " +
-                              _vm._s(event.name) +
-                              "\n            "
-                          )
-                        ]
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(event.name) +
+                          "\n            "
                       )
-                    ],
-                    1
+                    ]
                   )
-                }),
-                0
+                ],
+                1
               )
-            ])
-          ])
-        : _c("div", [_vm._v("\n      This is User\n    ")]),
+            }),
+            0
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),

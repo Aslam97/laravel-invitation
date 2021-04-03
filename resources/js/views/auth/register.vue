@@ -6,17 +6,25 @@ export default {
 
   data: () => ({
     model: {
+      code: '',
       name: '',
       bod: '',
       gender: '',
       favorite_designer: []
     },
+    tryToJoin: false,
     genders: [
       { id: 1, label: 'Male', value: 'M' },
       { id: 2, label: 'Female', value: 'F' }
     ],
+    designers: [
+      { id: 1, label: 'Bagutta' },
+      { id: 2, label: 'Balenciaga' },
+      { id: 3, label: 'Balmain x Giuseppe Zanotti' }
+    ],
     currentCountDown: '',
-    expired: false
+    expired: false,
+    showDOM: false
   }),
 
   computed: {
@@ -28,12 +36,26 @@ export default {
     }
   },
 
+  watch: {
+    invitation(value) {
+      if (value.registration_code) {
+        this.$router.push({
+          name: 'invitation.success',
+          params: { id: value.id }
+        })
+      }
+    }
+  },
+
   async mounted() {
     const { query } = this.$route
 
     if (!query || (query && !query.invitationCode)) {
       this.$router.push('/404')
     }
+
+    this.showDOM = true
+    this.model.code = query.invitationCode
 
     await this.$store.dispatch('invitation/validate', {
       code: query.invitationCode
@@ -45,6 +67,37 @@ export default {
   },
 
   methods: {
+    async onSubmit() {
+      this.tryToJoin = true
+
+      try {
+        const { message, data } = await this.$store.dispatch(
+          'invitation/join',
+          this.model
+        )
+
+        this.$notify({
+          title: 'Success',
+          type: 'success',
+          message
+        })
+
+        this.$router.push(
+          this.$route.query.redirectFrom || {
+            name: 'invitation.success',
+            params: { id: data.id }
+          }
+        )
+      } catch (e) {
+        const {
+          data: { errors }
+        } = e
+
+        this.tryToJoin = false
+        this.$refs.formJoin.setErrors(errors)
+      }
+    },
+
     startCountDown() {
       let timer = setInterval(() => {
         const now = new Date().getTime()
@@ -72,9 +125,12 @@ export default {
 </script>
 
 <template>
-  <div class="page">
+  <div
+    v-show="showDOM"
+    class="page"
+  >
     <ValidationObserver
-      ref="formLogin"
+      ref="formJoin"
       v-slot="{ handleSubmit }"
       tag="div"
       class="container"
@@ -126,7 +182,7 @@ export default {
               type="date"
               placeholder=""
               format="dd MMM yyyy"
-              value="yyyy-MM-dd"
+              value-format="yyyy-MM-dd"
               :class="['w-100', { 'is-invalid': errors[0] }]"
             />
             <span class="invalid-feedback">{{ errors[0] }}</span>
@@ -139,10 +195,7 @@ export default {
             class="form-group"
             rules="required"
           >
-            <label
-              for="Nama stan"
-              class="form-label"
-            >
+            <label class="form-label">
               Gender
             </label>
             <ElSelect
@@ -160,13 +213,31 @@ export default {
             <span class="invalid-feedback">{{ errors[0] }}</span>
           </ValidationProvider>
 
-          <BaseInput
-            v-model="model.password"
+          <ValidationProvider
+            v-slot="{ errors }"
+            tag="div"
+            name="Favorite Designer"
+            class="form-group"
             rules="required"
-            type="password"
-            name="Password"
-            :label="true"
-          />
+          >
+            <label class="form-label">
+              Favorite Designer
+            </label>
+            <ElSelect
+              v-model="model.favorite_designer"
+              :class="['w-100', { 'is-invalid': errors[0] }]"
+              placeholder=""
+              multiple
+            >
+              <ElOption
+                v-for="designer in designers"
+                :key="designer.id"
+                :label="designer.label"
+                :value="designer.label"
+              />
+            </ElSelect>
+            <span class="invalid-feedback">{{ errors[0] }}</span>
+          </ValidationProvider>
 
           <button class="btn btn-blue btn-block btn-md">
             Join

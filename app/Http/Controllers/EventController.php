@@ -27,7 +27,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $event = Event::withCount('invitations as total_invitations')->firstOrFail($id);
+        $event = Event::withCount('invitations as total_invitations')->with('invitations')->firstOrFail($id);
 
         return new EventResource($event);
     }

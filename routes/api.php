@@ -15,8 +15,16 @@ Route::middleware('auth:sanctum')->group(function ($route) {
 
     $route->get('/invitations', [Controllers\InvitationController::class, 'index']);
     $route->post('/invitations', [Controllers\InvitationController::class, 'store']);
+    $route->put(
+        '/invitations/join',
+        [Controllers\InvitationController::class, 'join']
+    )->withoutMiddleware('auth:sanctum');
     $route->post(
         '/invitations/validate',
         [Controllers\InvitationController::class, 'validateCode']
+    )->withoutMiddleware('auth:sanctum');
+    $route->get(
+        '/invitations/{id}',
+        [Controllers\InvitationController::class, 'show'],
     )->withoutMiddleware('auth:sanctum');
 });

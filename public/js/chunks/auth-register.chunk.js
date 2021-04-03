@@ -30,11 +30,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       model: {
+        code: '',
         name: '',
         bod: '',
         gender: '',
         favorite_designer: []
       },
+      tryToJoin: false,
       genders: [{
         id: 1,
         label: 'Male',
@@ -44,8 +46,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         label: 'Female',
         value: 'F'
       }],
+      designers: [{
+        id: 1,
+        label: 'Bagutta'
+      }, {
+        id: 2,
+        label: 'Balenciaga'
+      }, {
+        id: 3,
+        label: 'Balmain x Giuseppe Zanotti'
+      }],
       currentCountDown: '',
-      expired: false
+      expired: false,
+      showDOM: false
     };
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('invitation', ['invitation'])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('event', ['event'])), {}, {
@@ -53,6 +66,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return new Date(this.event.expired_at).getTime();
     }
   }),
+  watch: {
+    invitation: function invitation(value) {
+      if (value.registration_code) {
+        this.$router.push({
+          name: 'invitation.success',
+          params: {
+            id: value.id
+          }
+        });
+      }
+    }
+  },
   mounted: function mounted() {
     var _this = this;
 
@@ -68,19 +93,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this.$router.push('/404');
               }
 
-              _context.next = 4;
+              _this.showDOM = true;
+              _this.model.code = query.invitationCode;
+              _context.next = 6;
               return _this.$store.dispatch('invitation/validate', {
                 code: query.invitationCode
               });
 
-            case 4:
-              _context.next = 6;
+            case 6:
+              _context.next = 8;
               return _this.$store.dispatch('event/show', _this.invitation.event_id);
 
-            case 6:
+            case 8:
               _this.startCountDown();
 
-            case 7:
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -89,21 +116,73 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }))();
   },
   methods: {
-    startCountDown: function startCountDown() {
+    onSubmit: function onSubmit() {
       var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var _yield$_this2$$store$, message, data, errors;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _this2.tryToJoin = true;
+                _context2.prev = 1;
+                _context2.next = 4;
+                return _this2.$store.dispatch('invitation/join', _this2.model);
+
+              case 4:
+                _yield$_this2$$store$ = _context2.sent;
+                message = _yield$_this2$$store$.message;
+                data = _yield$_this2$$store$.data;
+
+                _this2.$notify({
+                  title: 'Success',
+                  type: 'success',
+                  message: message
+                });
+
+                _this2.$router.push(_this2.$route.query.redirectFrom || {
+                  name: 'invitation.success',
+                  params: {
+                    id: data.id
+                  }
+                });
+
+                _context2.next = 16;
+                break;
+
+              case 11:
+                _context2.prev = 11;
+                _context2.t0 = _context2["catch"](1);
+                errors = _context2.t0.data.errors;
+                _this2.tryToJoin = false;
+
+                _this2.$refs.formJoin.setErrors(errors);
+
+              case 16:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[1, 11]]);
+      }))();
+    },
+    startCountDown: function startCountDown() {
+      var _this3 = this;
 
       var timer = setInterval(function () {
         var now = new Date().getTime();
-        var distance = _this2.countDownDate - now;
+        var distance = _this3.countDownDate - now;
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
         var hours = Math.floor(distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
         var minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
         var seconds = Math.floor(distance % (1000 * 60) / 1000);
-        _this2.currentCountDown = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's '; // If the count down is over, write some text
+        _this3.currentCountDown = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's '; // If the count down is over, write some text
 
         if (distance < 0) {
           clearInterval(timer);
-          _this2.expired = true;
+          _this3.expired = true;
         }
       }, 1000);
     }
@@ -180,10 +259,20 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "page" },
+    {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.showDOM,
+          expression: "showDOM"
+        }
+      ],
+      staticClass: "page"
+    },
     [
       _c("ValidationObserver", {
-        ref: "formLogin",
+        ref: "formJoin",
         staticClass: "container",
         attrs: { tag: "div" },
         scopedSlots: _vm._u([
@@ -283,7 +372,7 @@ var render = function() {
                                         type: "date",
                                         placeholder: "",
                                         format: "dd MMM yyyy",
-                                        value: "yyyy-MM-dd"
+                                        "value-format": "yyyy-MM-dd"
                                       },
                                       model: {
                                         value: _vm.model.bod,
@@ -322,18 +411,9 @@ var render = function() {
                                 fn: function(ref) {
                                   var errors = ref.errors
                                   return [
-                                    _c(
-                                      "label",
-                                      {
-                                        staticClass: "form-label",
-                                        attrs: { for: "Nama stan" }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n            Gender\n          "
-                                        )
-                                      ]
-                                    ),
+                                    _c("label", { staticClass: "form-label" }, [
+                                      _vm._v("\n            Gender\n          ")
+                                    ]),
                                     _vm._v(" "),
                                     _c(
                                       "ElSelect",
@@ -377,20 +457,73 @@ var render = function() {
                           )
                         }),
                         _vm._v(" "),
-                        _c("BaseInput", {
+                        _c("ValidationProvider", {
+                          staticClass: "form-group",
                           attrs: {
-                            rules: "required",
-                            type: "password",
-                            name: "Password",
-                            label: true
+                            tag: "div",
+                            name: "Favorite Designer",
+                            rules: "required"
                           },
-                          model: {
-                            value: _vm.model.password,
-                            callback: function($$v) {
-                              _vm.$set(_vm.model, "password", $$v)
-                            },
-                            expression: "model.password"
-                          }
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "default",
+                                fn: function(ref) {
+                                  var errors = ref.errors
+                                  return [
+                                    _c("label", { staticClass: "form-label" }, [
+                                      _vm._v(
+                                        "\n            Favorite Designer\n          "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "ElSelect",
+                                      {
+                                        class: [
+                                          "w-100",
+                                          { "is-invalid": errors[0] }
+                                        ],
+                                        attrs: {
+                                          placeholder: "",
+                                          multiple: ""
+                                        },
+                                        model: {
+                                          value: _vm.model.favorite_designer,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.model,
+                                              "favorite_designer",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "model.favorite_designer"
+                                        }
+                                      },
+                                      _vm._l(_vm.designers, function(designer) {
+                                        return _c("ElOption", {
+                                          key: designer.id,
+                                          attrs: {
+                                            label: designer.label,
+                                            value: designer.label
+                                          }
+                                        })
+                                      }),
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "span",
+                                      { staticClass: "invalid-feedback" },
+                                      [_vm._v(_vm._s(errors[0]))]
+                                    )
+                                  ]
+                                }
+                              }
+                            ],
+                            null,
+                            true
+                          )
                         }),
                         _vm._v(" "),
                         _c(
