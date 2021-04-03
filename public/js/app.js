@@ -27797,7 +27797,7 @@ var actions = {
 
             case 4:
               _yield$axios$get2 = _context2.sent;
-              data = _yield$axios$get2.data;
+              data = _yield$axios$get2.data.data;
               commit('setUser', data);
               _context2.next = 12;
               break;
