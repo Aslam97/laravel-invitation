@@ -12,4 +12,5 @@ Route::middleware('auth:sanctum')->group(function ($route) {
 
     $route->get('/invitations', [Controllers\InvitationController::class, 'index']);
     $route->post('/invitations', [Controllers\InvitationController::class, 'store']);
+    $route->post('/invitations/validate', [Controllers\InvitationController::class, 'validate']);
 });

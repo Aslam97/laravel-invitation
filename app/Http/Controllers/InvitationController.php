@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Events\InvitationCreated;
 use App\Http\Requests\StoreInvitationRequest;
-use App\Http\Requests\UpdateInvitationRequest;
 use App\Http\Resources\InvitationResource;
 use App\Invitation;
 
@@ -44,16 +43,15 @@ class InvitationController extends Controller
     }
 
     /**
-     * Update and register the user
+     * Validate invitation code
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  string $id
-     * @return void
+     * @param  string $code
+     * @return \App\Http\Resources\InvitationResource
      */
-    public function update(UpdateInvitationRequest $request, $id)
+    public function validate($code)
     {
-        $invitation = Invitation::findOrFail($id);
-
+        $invitation = Invitation::where('code', $code)->firstOrFail();
+        return new InvitationResource($invitation);
     }
 
     /**

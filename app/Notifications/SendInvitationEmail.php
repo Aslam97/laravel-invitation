@@ -30,7 +30,7 @@ class SendInvitationEmail extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $url = url('/invitations?invitationCode=' . $notifiable->code);
+        $url = url('/register?invitationCode=' . $notifiable->code);
 
         return (new MailMessage)
             ->greeting('Invitation Link!')
