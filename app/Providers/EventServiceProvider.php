@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Events\InvitationCreated;
+use App\Events\InvitationJoined;
+use App\Listeners\SendEmailJoined;
 use App\Listeners\SendInvitationEmail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         InvitationCreated::class => [
             SendInvitationEmail::class,
+        ],
+        InvitationJoined::class => [
+            SendEmailJoined::class,
         ],
     ];
 

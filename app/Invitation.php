@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Event;
+use App\Notifications\SendEmailJoined;
 use App\Notifications\SendInvitationEmail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -35,5 +36,11 @@ class Invitation extends Model
     public function SendInvitationEmail()
     {
         $this->notify(new SendInvitationEmail());
+    }
+
+    public function SendEmailJoined()
+    {
+        $when = now()->addMinutes(5);
+        $this->notify((new SendEmailJoined())->delay($when));
     }
 }

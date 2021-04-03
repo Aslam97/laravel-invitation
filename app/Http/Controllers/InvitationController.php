@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\InvitationCreated;
+use App\Events\InvitationJoined;
 use App\Http\Requests\JoinInvitationRequest;
 use App\Http\Requests\StoreInvitationRequest;
 use App\Http\Resources\InvitationResource;
@@ -75,6 +76,8 @@ class InvitationController extends Controller
 
         $invitation = Invitation::where('code', $validatedData['code'])->firstOrFail();
         $invitation->update($validatedData);
+
+        InvitationJoined::dispatch($invitation);
 
         return (new InvitationResource($invitation))->additional([
             'message' => 'Joined Successful.',
