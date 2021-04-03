@@ -39,6 +39,10 @@ export default {
       tag="div"
       class="container"
     >
+      <h3 :class="$style.event_name">
+        {{ event.name }}
+      </h3>
+      <br>
       <form
         class="card"
         autocomplete="off"
@@ -71,4 +75,8 @@ export default {
   </div>
 </template>
 
-<style lang="scss" module></style>
+<style lang="scss" module>
+.event_name {
+  text-align: center;
+}
+</style>

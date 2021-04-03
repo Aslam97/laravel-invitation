@@ -37186,7 +37186,7 @@ var actions = {
   },
   show: function show(_ref2, id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var commit, _yield$axios$get2, data;
+      var commit, _yield$axios$get2, event;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
@@ -37198,8 +37198,8 @@ var actions = {
 
             case 3:
               _yield$axios$get2 = _context2.sent;
-              data = _yield$axios$get2.data;
-              commit('setEvent', data);
+              event = _yield$axios$get2.data.data;
+              commit('setEvent', event);
 
             case 6:
             case "end":

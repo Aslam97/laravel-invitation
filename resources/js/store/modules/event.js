@@ -29,7 +29,9 @@ export const actions = {
   },
 
   async show({ commit }, id) {
-    const { data } = await axios.get(`/api/events/${id}`)
-    commit('setEvent', data)
+    const {
+      data: { data: event }
+    } = await axios.get(`/api/events/${id}`)
+    commit('setEvent', event)
   }
 }
