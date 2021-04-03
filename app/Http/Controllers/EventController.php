@@ -7,6 +7,11 @@ use App\Http\Resources\EventResource;
 
 class EventController extends Controller
 {
+    /**
+     * Get all events
+     *
+     * @return \App\Http\Resources\EventResource
+     */
     public function index()
     {
         $events = Event::all();
@@ -14,6 +19,12 @@ class EventController extends Controller
         return EventResource::collection($events);
     }
 
+    /**
+     * Show specific event by id
+     *
+     * @param  string $id
+     * @return \App\Http\Resources\EventResource
+     */
     public function show($id)
     {
         $event = Event::withCount('invitations as total_invitations')->firstOrFail($id);
