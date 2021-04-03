@@ -8,14 +8,12 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       '@': path.join(__dirname, './resources/js'),
-      '@assets': path.join(__dirname, './resources/js/assets'),
       '@components': path.join(__dirname, './resources/js/components'),
       '@plugins': path.join(__dirname, './resources/js/plugins'),
       '@router': path.join(__dirname, './resources/js/router'),
       '@store': path.join(__dirname, './resources/js/store'),
       '@design': path.join(__dirname, './resources/js/design'),
       '@middleware': path.join(__dirname, './resources/js/middleware'),
-      '@utils': path.join(__dirname, './resources/js/utils'),
       '@views': path.join(__dirname, './resources/js/views'),
       '@layouts': path.join(__dirname, './resources/js/layouts')
     }
