@@ -1,9 +1,9 @@
 <?php
 
-use App\Admin;
+use App\Event;
 use Illuminate\Database\Seeder;
 
-class AdminSeeder extends Seeder
+class EventSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,8 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        factory(Admin::class)->create();
+        factory(Event::class)->create([
+            'name' => 'HUNTBAZAAR',
+        ]);
     }
 }

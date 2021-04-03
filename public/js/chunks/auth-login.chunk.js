@@ -21,6 +21,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   meta: {
     title: 'Masuk'
   },
+  middleware: 'guest',
   data: function data() {
     return {
       model: {
@@ -35,8 +36,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _yield$_this$$store$d, data, errors;
-
+        var errors;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -52,26 +52,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this.$store.dispatch('auth/login', _this.model);
 
               case 6:
-                _yield$_this$$store$d = _context.sent;
-                data = _yield$_this$$store$d.data;
-                console.log(data);
-                _context.next = 16;
+                _context.next = 13;
                 break;
 
-              case 11:
-                _context.prev = 11;
+              case 8:
+                _context.prev = 8;
                 _context.t0 = _context["catch"](3);
                 errors = _context.t0.data.errors;
                 _this.tryingToLogIn = false;
 
                 _this.$refs.formLogin.setErrors(errors);
 
-              case 16:
+              case 13:
+                _context.next = 15;
+                return _this.$store.dispatch('auth/fetchUser');
+
+              case 15:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[3, 11]]);
+        }, _callee, null, [[3, 8]]);
       }))();
     }
   }
@@ -91,12 +92,10 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".resources-js-views-auth-login__page {\n  display: flex;\n  flex-direction: column;\n  position: relative;\n  min-height: 100%;\n  justify-content: center;\n}\n.resources-js-views-auth-login__login_container {\n  width: 100%;\n  margin-right: auto;\n  margin-left: auto;\n  max-width: 27.5rem;\n}\n.resources-js-views-auth-login__card_header {\n  display: flex;\n  align-items: center;\n  min-height: 3rem;\n  padding: 1rem;\n  font-size: 0.8rem;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.08);\n  color: rgba(73, 73, 73, 0.505);\n}\n.resources-js-views-auth-login__card_title {\n  flex: 1 1 0%;\n  color: var(--color-text-title);\n  font-size: 1.1rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}", ""]);
+exports.push([module.i, ".resources-js-views-auth-login__card_header {\n  display: flex;\n  align-items: center;\n  min-height: 3rem;\n  padding: 1rem;\n  font-size: 0.8rem;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.08);\n  color: rgba(73, 73, 73, 0.505);\n}\n.resources-js-views-auth-login__card_title {\n  flex: 1 1 0%;\n  color: var(--color-text-title);\n  font-size: 1.1rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}", ""]);
 
 // exports
 exports.locals = {
-	"page": "resources-js-views-auth-login__page",
-	"login_container": "resources-js-views-auth-login__login_container",
 	"card_header": "resources-js-views-auth-login__card_header",
 	"card_title": "resources-js-views-auth-login__card_title"
 };
@@ -150,11 +149,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { class: [_vm.$style.page] },
+    { staticClass: "page" },
     [
       _c("ValidationObserver", {
         ref: "formLogin",
-        class: _vm.$style.login_container,
+        staticClass: "container",
         attrs: { tag: "div" },
         scopedSlots: _vm._u([
           {

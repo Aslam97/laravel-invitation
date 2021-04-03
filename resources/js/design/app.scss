@@ -45,3 +45,18 @@ html {
 
 @import '@design/_btn.scss';
 @import '@design/_card.scss';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100%;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 27.5rem;
+}

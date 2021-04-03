@@ -4,6 +4,8 @@ export default {
     title: 'Masuk'
   },
 
+  middleware: 'guest',
+
   data: () => ({
     model: {
       email: '',
@@ -20,9 +22,7 @@ export default {
       await this.$store.dispatch('auth/csrfCookie')
 
       try {
-        const { data } = await this.$store.dispatch('auth/login', this.model)
-
-        console.log(data)
+        await this.$store.dispatch('auth/login', this.model)
       } catch (e) {
         const {
           data: { errors }
@@ -31,18 +31,20 @@ export default {
         this.tryingToLogIn = false
         this.$refs.formLogin.setErrors(errors)
       }
+
+      await this.$store.dispatch('auth/fetchUser')
     }
   }
 }
 </script>
 
 <template>
-  <div :class="[$style.page]">
+  <div class="page">
     <ValidationObserver
       ref="formLogin"
       v-slot="{ handleSubmit }"
       tag="div"
-      :class="$style.login_container"
+      class="container"
     >
       <form
         class="card"
@@ -82,21 +84,6 @@ export default {
 </template>
 
 <style lang="scss" module>
-.page {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  min-height: 100%;
-  justify-content: center;
-}
-
-.login_container {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 27.5rem;
-}
-
 .card_header {
   display: flex;
   align-items: center;

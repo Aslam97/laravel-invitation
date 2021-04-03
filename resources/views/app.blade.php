@@ -10,7 +10,9 @@
     <title>HUNTBAZAAR</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      @yield('content')
+    </div>
 
     <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
   </body>

@@ -161,7 +161,7 @@ function resolveComponents(components) {
  * @return {Array}
  */
 function getMiddleware(components) {
-  const middleware = []
+  const middleware = ['check-auth']
 
   components
     .filter(c => c.middleware)

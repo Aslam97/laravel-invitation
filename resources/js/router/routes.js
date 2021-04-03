@@ -15,5 +15,11 @@ export default [
 
   { path: '/home', name: 'home', component: loadView('home.vue') },
 
+  {
+    path: '/events/:id',
+    name: 'events',
+    component: loadView('event/show.vue')
+  },
+
   { path: '*', component: loadView('errors/404.vue') }
 ]

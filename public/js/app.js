@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/chunks/" + ({"auth-login":"auth-login","welcome":"welcome"}[chunkId]||chunkId) + ".chunk.js"
+/******/ 		return __webpack_require__.p + "js/chunks/" + ({"auth-login":"auth-login","event-show":"event-show","home":"home","welcome":"welcome"}[chunkId]||chunkId) + ".chunk.js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -2242,7 +2242,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Mon
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!nprogress/nprogress.css */ "./node_modules/css-loader/index.js!./node_modules/nprogress/nprogress.css"), "");
 
 // module
-exports.push([module.i, ":root {\n  --background-color: hsl(0, 0%, 15%);\n  --color-text-title: #000;\n  --color-text-default: #494949;\n  --color-input-text: #494949;\n  --color-error: #fd6a65;\n  --color-primary: #1a73e8;\n  --color-border: #e0e0e0;\n}\nhtml {\n  font-size: 16px;\n  font-family: \"Montserrat\", sans-serif;\n  font-weight: 400;\n  line-height: 1.4;\n  -webkit-text-size-adjust: 100%;\n  text-size-adjust: 100%;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%;\n  -webkit-tap-highlight-color: transparent;\n  overflow-x: hidden;\n}\n* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nbody {\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  background-color: #f6f6f6;\n  color: var(--color-text-default);\n}\nbody,\nhtml {\n  height: 100%;\n  width: 100%;\n}\n.btn {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  font-size: 16px;\n  min-height: 36px;\n  min-width: 88px;\n  line-height: 36px;\n  vertical-align: middle;\n  align-items: center;\n  text-align: center;\n  border-radius: 4px;\n  user-select: none;\n  outline: none;\n  border: 0;\n  padding: 0 6px;\n  background: transparent;\n  color: currentColor;\n  white-space: nowrap;\n  text-transform: uppercase;\n  font-weight: 600;\n  text-decoration: none;\n  overflow: hidden;\n  transition: box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);\n}\n.btn:focus {\n  outline: 0;\n}\n.btn:disabled {\n  background-color: rgba(0, 0, 0, 0.06);\n  box-shadow: none;\n  color: rgba(0, 0, 0, 0.26) !important;\n  pointer-events: none;\n}\n.btn {\n  padding-left: 16px;\n  padding-right: 16px;\n  border: 0;\n  text-transform: none;\n}\n.btn-block {\n  display: block;\n  width: 100%;\n}\n.btn-sm {\n  padding: 0.25rem 0.75rem;\n  font-size: 0.75rem;\n  line-height: 20px;\n  min-height: 20px;\n}\n.btn-md {\n  padding: 0.25rem 0.75rem;\n}\n.btn-blue {\n  background-color: #1a73e8;\n  color: #fff !important;\n}\n.btn-blue:hover {\n  background-color: #1765cc;\n  box-shadow: none;\n}\n.btn-blue:hover:disabled {\n  background-color: rgba(0, 0, 0, 0.06);\n  box-shadow: none;\n}\n.card {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  min-width: 0;\n  word-wrap: break-word;\n  background-color: #fff;\n  background-clip: border-box;\n  border-radius: 8px;\n  box-shadow: 0 15px 42px 0 rgba(179, 179, 179, 0.15), 0 3px 18px 0 rgba(0, 0, 0, 0.08);\n}\n.card-body {\n  flex: 1 1 auto;\n  padding: 2rem;\n}", ""]);
+exports.push([module.i, ":root {\n  --background-color: hsl(0, 0%, 15%);\n  --color-text-title: #000;\n  --color-text-default: #494949;\n  --color-input-text: #494949;\n  --color-error: #fd6a65;\n  --color-primary: #1a73e8;\n  --color-border: #e0e0e0;\n}\nhtml {\n  font-size: 16px;\n  font-family: \"Montserrat\", sans-serif;\n  font-weight: 400;\n  line-height: 1.4;\n  -webkit-text-size-adjust: 100%;\n  text-size-adjust: 100%;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%;\n  -webkit-tap-highlight-color: transparent;\n  overflow-x: hidden;\n}\n* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nbody {\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  background-color: #f6f6f6;\n  color: var(--color-text-default);\n}\nbody,\nhtml {\n  height: 100%;\n  width: 100%;\n}\n.btn {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  font-size: 16px;\n  min-height: 36px;\n  min-width: 88px;\n  line-height: 36px;\n  vertical-align: middle;\n  align-items: center;\n  text-align: center;\n  border-radius: 4px;\n  user-select: none;\n  outline: none;\n  border: 0;\n  padding: 0 6px;\n  background: transparent;\n  color: currentColor;\n  white-space: nowrap;\n  text-transform: uppercase;\n  font-weight: 600;\n  text-decoration: none;\n  overflow: hidden;\n  transition: box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);\n}\n.btn:focus {\n  outline: 0;\n}\n.btn:disabled {\n  background-color: rgba(0, 0, 0, 0.06);\n  box-shadow: none;\n  color: rgba(0, 0, 0, 0.26) !important;\n  pointer-events: none;\n}\n.btn {\n  padding-left: 16px;\n  padding-right: 16px;\n  border: 0;\n  text-transform: none;\n}\n.btn-block {\n  display: block;\n  width: 100%;\n}\n.btn-sm {\n  padding: 0.25rem 0.75rem;\n  font-size: 0.75rem;\n  line-height: 20px;\n  min-height: 20px;\n}\n.btn-md {\n  padding: 0.25rem 0.75rem;\n}\n.btn-blue {\n  background-color: #1a73e8;\n  color: #fff !important;\n}\n.btn-blue:hover {\n  background-color: #1765cc;\n  box-shadow: none;\n}\n.btn-blue:hover:disabled {\n  background-color: rgba(0, 0, 0, 0.06);\n  box-shadow: none;\n}\n.card {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  min-width: 0;\n  word-wrap: break-word;\n  background-color: #fff;\n  background-clip: border-box;\n  border-radius: 8px;\n  box-shadow: 0 15px 42px 0 rgba(179, 179, 179, 0.15), 0 3px 18px 0 rgba(0, 0, 0, 0.08);\n}\n.card-body {\n  flex: 1 1 auto;\n  padding: 2rem;\n}\n.page {\n  display: flex;\n  flex-direction: column;\n  position: relative;\n  min-height: 100%;\n  justify-content: center;\n}\n.container {\n  width: 100%;\n  margin-right: auto;\n  margin-left: auto;\n  max-width: 27.5rem;\n}", ""]);
 
 // exports
 
@@ -27001,17 +27001,164 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./resources/js/middleware sync nonrecursive .*\.js$ ***!
   \***********************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyContext(req) {
-	var e = new Error("Cannot find module '" + req + "'");
-	e.code = 'MODULE_NOT_FOUND';
-	throw e;
+var map = {
+	"./auth.js": "./resources/js/middleware/auth.js",
+	"./check-auth.js": "./resources/js/middleware/check-auth.js",
+	"./guest.js": "./resources/js/middleware/guest.js"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
 }
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = "./resources/js/middleware sync .*\\.js$";
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./resources/js/middleware sync .*\\.js$";
+
+/***/ }),
+
+/***/ "./resources/js/middleware/auth.js":
+/*!*****************************************!*\
+  !*** ./resources/js/middleware/auth.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @store */ "./resources/js/store/index.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/(function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(to, from, next) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            if (!_store__WEBPACK_IMPORTED_MODULE_1__["default"].getters['auth/check']) {
+              next({
+                name: 'login'
+              });
+            } else {
+              next();
+            }
+
+          case 1:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function (_x, _x2, _x3) {
+    return _ref.apply(this, arguments);
+  };
+})());
+
+/***/ }),
+
+/***/ "./resources/js/middleware/check-auth.js":
+/*!***********************************************!*\
+  !*** ./resources/js/middleware/check-auth.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @store */ "./resources/js/store/index.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/(function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(to, from, next) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            if (!(!_store__WEBPACK_IMPORTED_MODULE_1__["default"].getters['auth/check'] && _store__WEBPACK_IMPORTED_MODULE_1__["default"].getters['auth/loggedIn'])) {
+              _context.next = 8;
+              break;
+            }
+
+            _context.prev = 1;
+            _context.next = 4;
+            return _store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch('auth/fetchUser');
+
+          case 4:
+            _context.next = 8;
+            break;
+
+          case 6:
+            _context.prev = 6;
+            _context.t0 = _context["catch"](1);
+
+          case 8:
+            next();
+
+          case 9:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[1, 6]]);
+  }));
+
+  return function (_x, _x2, _x3) {
+    return _ref.apply(this, arguments);
+  };
+})());
+
+/***/ }),
+
+/***/ "./resources/js/middleware/guest.js":
+/*!******************************************!*\
+  !*** ./resources/js/middleware/guest.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @store */ "./resources/js/store/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function (to, from, next) {
+  if (_store__WEBPACK_IMPORTED_MODULE_0__["default"].getters['auth/check']) {
+    next({
+      name: 'home'
+    });
+  } else {
+    next();
+  }
+});
 
 /***/ }),
 
@@ -27356,7 +27503,7 @@ function resolveComponents(components) {
 
 
 function getMiddleware(components) {
-  var middleware = [];
+  var middleware = ['check-auth'];
   components.filter(function (c) {
     return c.middleware;
   }).forEach(function (component) {
@@ -27458,6 +27605,10 @@ function loadView(path) {
   name: 'home',
   component: loadView('home.vue')
 }, {
+  path: '/events/:id',
+  name: 'events',
+  component: loadView('event/show.vue')
+}, {
   path: '*',
   component: loadView('errors/404.vue')
 }]);
@@ -27527,7 +27678,9 @@ var modules = requireContext.keys().map(function (file) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./auth.js": "./resources/js/store/modules/auth.js"
+	"./auth.js": "./resources/js/store/modules/auth.js",
+	"./event.js": "./resources/js/store/modules/event.js",
+	"./invitation.js": "./resources/js/store/modules/invitation.js"
 };
 
 
@@ -27585,7 +27738,7 @@ var getters = {
     return state.user;
   },
   loggedIn: function loggedIn(state) {
-    return state.loggedIn;
+    return state.loggedIn === 'true' ? true : false;
   },
   check: function check(state) {
     return state.user !== null;
@@ -27595,6 +27748,13 @@ var mutations = {
   setLoggedIn: function setLoggedIn(state, payload) {
     state.loggedIn = payload;
     localStorage.setItem('loggedIn', payload);
+  },
+  setUser: function setUser(state, payload) {
+    state.user = payload;
+  },
+  removeUser: function removeUser(state) {
+    state.loggedIn = null;
+    localStorage.removeItem('loggedIn');
   }
 };
 var actions = {
@@ -27622,18 +27782,250 @@ var actions = {
       }, _callee);
     }))();
   },
-  login: function login(_ref, payload) {
-    var commit = _ref.commit;
+  fetchUser: function fetchUser(_ref) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var commit, _yield$axios$get2, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref.commit;
+              _context2.prev = 1;
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/user');
+
+            case 4:
+              _yield$axios$get2 = _context2.sent;
+              data = _yield$axios$get2.data;
+              commit('setUser', data);
+              _context2.next = 12;
+              break;
+
+            case 9:
+              _context2.prev = 9;
+              _context2.t0 = _context2["catch"](1);
+              commit('removeUser');
+
+            case 12:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[1, 9]]);
+    }))();
+  },
+  login: function login(_ref2, payload) {
+    var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/login', payload).then(function (_ref2) {
-        var data = _ref2.data;
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/login', payload).then(function (_ref3) {
+        var data = _ref3.data;
         commit('setLoggedIn', 'true');
+        commit('setUser', data);
         resolve(data);
-      })["catch"](function (_ref3) {
-        var response = _ref3.response;
+      })["catch"](function (_ref4) {
+        var response = _ref4.response;
         return reject(response);
       });
     });
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/event.js":
+/*!*********************************************!*\
+  !*** ./resources/js/store/modules/event.js ***!
+  \*********************************************/
+/*! exports provided: state, getters, mutations, actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var state = {
+  event: '',
+  events: []
+};
+var getters = {
+  event: function event(state) {
+    return state.event;
+  },
+  events: function events(state) {
+    return state.events;
+  }
+};
+var mutations = {
+  setEvent: function setEvent(state, payload) {
+    state.event = payload;
+  },
+  setEvents: function setEvents(state, payload) {
+    state.events = payload;
+  }
+};
+var actions = {
+  index: function index(_ref) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var commit, _yield$axios$get, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref.commit;
+              _context.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/events');
+
+            case 3:
+              _yield$axios$get = _context.sent;
+              data = _yield$axios$get.data;
+              commit('setEvents', data);
+
+            case 6:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  show: function show(_ref2, id) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var commit, _yield$axios$get2, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/events/".concat(id));
+
+            case 3:
+              _yield$axios$get2 = _context2.sent;
+              data = _yield$axios$get2.data;
+              commit('setEvent', data);
+
+            case 6:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/invitation.js":
+/*!**************************************************!*\
+  !*** ./resources/js/store/modules/invitation.js ***!
+  \**************************************************/
+/*! exports provided: state, getters, mutations, actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var state = {
+  event: '',
+  events: []
+};
+var getters = {
+  event: function event(state) {
+    return state.event;
+  },
+  events: function events(state) {
+    return state.events;
+  }
+};
+var mutations = {
+  setEvent: function setEvent(state, payload) {
+    state.event = payload;
+  },
+  setEvents: function setEvents(state, payload) {
+    state.events = payload;
+  }
+};
+var actions = {
+  index: function index(_ref) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var commit, _yield$axios$get, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref.commit;
+              _context.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/events');
+
+            case 3:
+              _yield$axios$get = _context.sent;
+              data = _yield$axios$get.data;
+              commit('setEvents', data);
+
+            case 6:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  show: function show(_ref2, id) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var commit, _yield$axios$get2, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/events/".concat(id));
+
+            case 3:
+              _yield$axios$get2 = _context2.sent;
+              data = _yield$axios$get2.data;
+              commit('setEvent', data);
+
+            case 6:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
   }
 };
 
@@ -27654,6 +28046,22 @@ var map = {
 	"./auth/login.vue": [
 		"./resources/js/views/auth/login.vue",
 		"auth-login"
+	],
+	"./event/show": [
+		"./resources/js/views/event/show.vue",
+		"event-show"
+	],
+	"./event/show.vue": [
+		"./resources/js/views/event/show.vue",
+		"event-show"
+	],
+	"./home": [
+		"./resources/js/views/home.vue",
+		"home"
+	],
+	"./home.vue": [
+		"./resources/js/views/home.vue",
+		"home"
 	],
 	"./welcome": [
 		"./resources/js/views/welcome.vue",
