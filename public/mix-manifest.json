@@ -3,12 +3,14 @@
     "/js/app.js.map": "/js/app.js.map",
     "/js/chunks/auth-login.chunk.js": "/js/chunks/auth-login.chunk.js",
     "/js/chunks/auth-login.chunk.js.map": "/js/chunks/auth-login.chunk.js.map",
-    "/js/chunks/welcome.chunk.js": "/js/chunks/welcome.chunk.js",
-    "/js/chunks/welcome.chunk.js.map": "/js/chunks/welcome.chunk.js.map",
-    "/js/chunks/home.chunk.js": "/js/chunks/home.chunk.js",
-    "/js/chunks/home.chunk.js.map": "/js/chunks/home.chunk.js.map",
+    "/js/chunks/auth-register.chunk.js": "/js/chunks/auth-register.chunk.js",
+    "/js/chunks/auth-register.chunk.js.map": "/js/chunks/auth-register.chunk.js.map",
+    "/js/chunks/errors-404.chunk.js": "/js/chunks/errors-404.chunk.js",
+    "/js/chunks/errors-404.chunk.js.map": "/js/chunks/errors-404.chunk.js.map",
     "/js/chunks/event-show.chunk.js": "/js/chunks/event-show.chunk.js",
     "/js/chunks/event-show.chunk.js.map": "/js/chunks/event-show.chunk.js.map",
-    "/js/chunks/errors-404.chunk.js": "/js/chunks/errors-404.chunk.js",
-    "/js/chunks/errors-404.chunk.js.map": "/js/chunks/errors-404.chunk.js.map"
+    "/js/chunks/home.chunk.js": "/js/chunks/home.chunk.js",
+    "/js/chunks/home.chunk.js.map": "/js/chunks/home.chunk.js.map",
+    "/js/chunks/welcome.chunk.js": "/js/chunks/welcome.chunk.js",
+    "/js/chunks/welcome.chunk.js.map": "/js/chunks/welcome.chunk.js.map"
 }

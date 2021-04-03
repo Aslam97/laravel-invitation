@@ -13,6 +13,12 @@ export default [
 
   { path: '/login', name: 'login', component: loadView('auth/login.vue') },
 
+  {
+    path: '/register',
+    name: 'register',
+    component: loadView('auth/register.vue')
+  },
+
   { path: '/home', name: 'home', component: loadView('home.vue') },
 
   {

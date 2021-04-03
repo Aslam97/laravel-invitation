@@ -10,6 +10,7 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
+    "babel-plugin-component": "^1.1.1",
     "compression-webpack-plugin": "^6.1.1",
     "cross-env": "^7.0",
     "eslint-plugin-vue": "^7.8.0",
@@ -24,6 +25,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "element-ui": "^2.15.1",
     "nprogress": "^0.2.0",
     "vee-validate": "^3.4.5",
     "vue": "^2.5.17",

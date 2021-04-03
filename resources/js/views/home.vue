@@ -11,25 +11,52 @@ export default {
 
   mounted() {
     this.$store.dispatch('event/index')
+  },
+
+  methods: {
+    async logout() {
+      await this.$store.dispatch('auth/logout')
+      this.$router.push({ name: 'login' })
+    }
   }
 }
 </script>
 
 <template>
-  <div v-if="user.is_admin">
-    This is admin
-    <ul>
-      <li
-        v-for="event in events"
-        :key="event.id"
+  <div class="page">
+    <div class="container">
+      <h3>List Events</h3>
+      <br>
+
+      <div
+        v-if="user && user.is_admin"
+        class="card"
       >
-        <RouterLink :to="{ name: 'events', params: { id: event.id } }">
-          {{ event.name }}
-        </RouterLink>
-      </li>
-    </ul>
-  </div>
-  <div v-else>
-    This is User
+        <div class="card-body">
+          <ul>
+            <li
+              v-for="event in events"
+              :key="event.id"
+            >
+              <RouterLink :to="{ name: 'events', params: { id: event.id } }">
+                {{ event.name }}
+              </RouterLink>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div v-else>
+        This is User
+      </div>
+
+      <br>
+      <a
+        href="#"
+        class="btn btn-blue btn-block btn-md"
+        @click.prevent="logout"
+      >
+        Logout
+      </a>
+    </div>
   </div>
 </template>

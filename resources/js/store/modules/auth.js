@@ -24,6 +24,13 @@ export const mutations = {
   removeUser(state) {
     state.loggedIn = null
     localStorage.removeItem('loggedIn')
+  },
+
+  setLogout(state) {
+    state.user = null
+    state.loggedIn = null
+
+    localStorage.removeItem('loggedIn')
   }
 }
 
@@ -57,5 +64,13 @@ export const actions = {
         })
         .catch(({ response }) => reject(response))
     })
+  },
+
+  async logout({ commit }) {
+    try {
+      await axios.post('/logout')
+    } catch (e) {}
+
+    commit('setLogout')
   }
 }

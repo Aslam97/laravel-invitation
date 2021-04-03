@@ -5,6 +5,7 @@ import App from './App.vue'
 
 import '@plugins'
 import '@components'
+import '@components/element-ui'
 
 Vue.config.productionTip = false
 
