@@ -36406,6 +36406,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @router */ "./resources/js/router/index.js");
+
 
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.timeout = 10000;
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.withCredentials = true;
@@ -36418,6 +36420,12 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.interceptors.response.use(function 
   return response;
 }, function (error) {
   // config
+  var response = error.response;
+
+  if (response.status === 404) {
+    _router__WEBPACK_IMPORTED_MODULE_1__["default"].push('/404');
+  }
+
   return Promise.reject(error);
 });
 
@@ -37218,53 +37226,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-var state = {};
-var getters = {};
-var mutations = {};
-var actions = {
-  index: function index(_ref) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var commit, _yield$axios$get, data;
-
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              commit = _ref.commit;
-              _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/events');
-
-            case 3:
-              _yield$axios$get = _context.sent;
-              data = _yield$axios$get.data;
-              commit('setEvents', data);
-
-            case 6:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
+var state = {
+  invitation: '',
+  invitations: []
+};
+var getters = {
+  invitation: function invitation(state) {
+    return state.invitation;
   },
+  invitations: function invitations(state) {
+    return state.invitations;
+  }
+};
+var mutations = {
+  setInvitation: function setInvitation(state, payload) {
+    state.invitation = payload;
+  },
+  setInvitations: function setInvitations(state, payload) {
+    state.invitations = payload;
+  }
+};
+var actions = {
   store: function store(_, payload) {
     return new Promise(function (resolve, reject) {
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/invitations', payload).then(function (_ref2) {
-        var data = _ref2.data;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/invitations', payload).then(function (_ref) {
+        var data = _ref.data;
         return resolve(data);
-      })["catch"](function (_ref3) {
-        var response = _ref3.response;
+      })["catch"](function (_ref2) {
+        var response = _ref2.response;
+        return reject(response);
+      });
+    });
+  },
+  validate: function validate(_ref3, payload) {
+    var commit = _ref3.commit;
+    return new Promise(function (resolve, reject) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/invitations/validate', payload).then(function (_ref4) {
+        var data = _ref4.data;
+        var invitation = data.data;
+        commit('setInvitation', invitation);
+        resolve(data);
+      })["catch"](function (_ref5) {
+        var response = _ref5.response;
         return reject(response);
       });
     });

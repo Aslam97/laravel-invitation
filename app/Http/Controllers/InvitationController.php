@@ -6,6 +6,7 @@ use App\Events\InvitationCreated;
 use App\Http\Requests\StoreInvitationRequest;
 use App\Http\Resources\InvitationResource;
 use App\Invitation;
+use Illuminate\Http\Request;
 
 class InvitationController extends Controller
 {
@@ -45,12 +46,14 @@ class InvitationController extends Controller
     /**
      * Validate invitation code
      *
-     * @param  string $code
+     * @param  \Illuminate\Http\Request $request
      * @return \App\Http\Resources\InvitationResource
      */
-    public function validate($code)
+    public function validateCode(Request $request)
     {
-        $invitation = Invitation::where('code', $code)->firstOrFail();
+        $validatedData = $request->validate(['code' => 'required']);
+
+        $invitation = Invitation::where('code', $validatedData['code'])->firstOrFail();
         return new InvitationResource($invitation);
     }
 

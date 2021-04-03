@@ -10,10 +10,24 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  middleware: 'auth',
+  middleware: 'guest',
+  data: function data() {
+    return {
+      model: {
+        email: ''
+      }
+    };
+  },
   mounted: function mounted() {
-    var query = this.$route.query.query;
-    console.log(query);
+    var query = this.$route.query;
+
+    if (!query || query && !query.code) {
+      this.$router.push('/404');
+    }
+
+    this.$store.dispatch('invitation/validate', {
+      code: query.code
+    });
   }
 });
 
@@ -34,7 +48,88 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  this is register\n")])
+  return _c(
+    "div",
+    { staticClass: "page" },
+    [
+      _c("ValidationObserver", {
+        ref: "formLogin",
+        staticClass: "container",
+        attrs: { tag: "div" },
+        scopedSlots: _vm._u([
+          {
+            key: "default",
+            fn: function(ref) {
+              var handleSubmit = ref.handleSubmit
+              return [
+                _c(
+                  "form",
+                  {
+                    staticClass: "card",
+                    attrs: { autocomplete: "off" },
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return handleSubmit(_vm.onSubmit)
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "card-body login" },
+                      [
+                        _c("BaseInput", {
+                          attrs: {
+                            rules: "required|email",
+                            name: "Alamat Email",
+                            placeholder: "kamu@contoh.com",
+                            label: true,
+                            vid: "email"
+                          },
+                          model: {
+                            value: _vm.model.email,
+                            callback: function($$v) {
+                              _vm.$set(_vm.model, "email", $$v)
+                            },
+                            expression: "model.email"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("BaseInput", {
+                          attrs: {
+                            rules: "required",
+                            type: "password",
+                            name: "Password",
+                            label: true
+                          },
+                          model: {
+                            value: _vm.model.password,
+                            callback: function($$v) {
+                              _vm.$set(_vm.model, "password", $$v)
+                            },
+                            expression: "model.password"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          { staticClass: "btn btn-blue btn-block btn-md" },
+                          [_vm._v("\n          Masuk\n        ")]
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                )
+              ]
+            }
+          }
+        ])
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
