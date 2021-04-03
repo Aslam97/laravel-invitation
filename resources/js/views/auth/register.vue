@@ -1,4 +1,6 @@
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   middleware: 'guest',
 
@@ -8,14 +10,23 @@ export default {
     }
   }),
 
-  mounted() {
+  computed: {
+    ...mapGetters('invitation', ['invitation']),
+    ...mapGetters('event', ['event'])
+  },
+
+  async mounted() {
     const { query } = this.$route
 
-    if (!query || (query && !query.code)) {
+    if (!query || (query && !query.invitationCode)) {
       this.$router.push('/404')
     }
 
-    this.$store.dispatch('invitation/validate', { code: query.code })
+    await this.$store.dispatch('invitation/validate', {
+      code: query.invitationCode
+    })
+
+    await this.$store.dispatch('event/show', this.invitation.event_id)
   }
 }
 </script>

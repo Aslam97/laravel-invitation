@@ -32,7 +32,7 @@ export default {
         this.$refs.formLogin.setErrors(errors)
       }
 
-      await this.$store.dispatch('auth/fetchUser')
+      this.$router.push(this.$route.query.redirectFrom || { name: 'home' })
     }
   }
 }
