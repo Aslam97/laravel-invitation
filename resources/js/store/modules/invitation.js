@@ -1,24 +1,10 @@
 import axios from 'axios'
 
-export const state = {
-  event: '',
-  events: []
-}
+export const state = {}
 
-export const getters = {
-  event: state => state.event,
-  events: state => state.events
-}
+export const getters = {}
 
-export const mutations = {
-  setEvent(state, payload) {
-    state.event = payload
-  },
-
-  setEvents(state, payload) {
-    state.events = payload
-  }
-}
+export const mutations = {}
 
 export const actions = {
   async index({ commit }) {
@@ -26,8 +12,12 @@ export const actions = {
     commit('setEvents', data)
   },
 
-  async show({ commit }, id) {
-    const { data } = await axios.get(`/api/events/${id}`)
-    commit('setEvent', data)
+  store(_, payload) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post('/api/invitations', payload)
+        .then(({ data }) => resolve(data))
+        .catch(({ response }) => reject(response))
+    })
   }
 }

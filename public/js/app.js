@@ -27956,26 +27956,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-var state = {
-  event: '',
-  events: []
-};
-var getters = {
-  event: function event(state) {
-    return state.event;
-  },
-  events: function events(state) {
-    return state.events;
-  }
-};
-var mutations = {
-  setEvent: function setEvent(state, payload) {
-    state.event = payload;
-  },
-  setEvents: function setEvents(state, payload) {
-    state.events = payload;
-  }
-};
+var state = {};
+var getters = {};
+var mutations = {};
 var actions = {
   index: function index(_ref) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -28002,30 +27985,16 @@ var actions = {
       }, _callee);
     }))();
   },
-  show: function show(_ref2, id) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var commit, _yield$axios$get2, data;
-
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              commit = _ref2.commit;
-              _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/events/".concat(id));
-
-            case 3:
-              _yield$axios$get2 = _context2.sent;
-              data = _yield$axios$get2.data;
-              commit('setEvent', data);
-
-            case 6:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }))();
+  store: function store(_, payload) {
+    return new Promise(function (resolve, reject) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/invitations', payload).then(function (_ref2) {
+        var data = _ref2.data;
+        return resolve(data);
+      })["catch"](function (_ref3) {
+        var response = _ref3.response;
+        return reject(response);
+      });
+    });
   }
 };
 

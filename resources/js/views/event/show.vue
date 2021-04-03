@@ -6,6 +6,7 @@ export default {
 
   data: () => ({
     model: {
+      event_id: '',
       email: ''
     },
     tryToSubmit: false
@@ -16,11 +17,25 @@ export default {
   },
 
   mounted() {
+    this.model.event_id = this.$route.params.id
     this.$store.dispatch('event/show', this.$route.params.id)
   },
 
   methods: {
-    onSubmit() {}
+    async onSubmit() {
+      this.tryToSubmit = true
+
+      try {
+        await this.$store.dispatch('invitation/store', this.model)
+      } catch (e) {
+        const {
+          data: { errors }
+        } = e
+
+        this.tryToSubmit = false
+        this.$refs.formInvitation.setErrors(errors)
+      }
+    }
   }
 }
 </script>
@@ -28,7 +43,7 @@ export default {
 <template>
   <div class="page">
     <ValidationObserver
-      ref="formInvit"
+      ref="formInvitation"
       v-slot="{ handleSubmit }"
       class="container"
     >

@@ -18,7 +18,7 @@ class CreateInvitationsTable extends Migration
             $table->foreignId('event_id')->constrained()->cascadeOnDelete();
             $table->string('code')->index();
             $table->string('email');
-            $table->dateTime('registered_at');
+            $table->dateTime('registered_at')->nullable();
             $table->timestamps();
         });
     }
