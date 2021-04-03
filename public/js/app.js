@@ -27892,7 +27892,7 @@ var actions = {
 
             case 3:
               _yield$axios$get = _context.sent;
-              data = _yield$axios$get.data;
+              data = _yield$axios$get.data.data;
               commit('setEvents', data);
 
             case 6:

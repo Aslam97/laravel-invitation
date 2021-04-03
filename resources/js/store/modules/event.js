@@ -22,7 +22,9 @@ export const mutations = {
 
 export const actions = {
   async index({ commit }) {
-    const { data } = await axios.get('/api/events')
+    const {
+      data: { data }
+    } = await axios.get('/api/events')
     commit('setEvents', data)
   },
 

@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <title>HUNTBAZAAR</title>
+    <title>HuntBazaar</title>
   </head>
   <body>
     <div id="app">

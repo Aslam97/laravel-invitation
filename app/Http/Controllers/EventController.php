@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Http\Resources\EventResource;
 
 class EventController extends Controller
 {
@@ -10,13 +11,13 @@ class EventController extends Controller
     {
         $events = Event::all();
 
-        return response()->json($events);
+        return EventResource::collection($events);
     }
 
     public function show($id)
     {
         $event = Event::withCount('invitations as total_invitations')->firstOrFail($id);
 
-        return response()->json($event);
+        return new EventResource($event);
     }
 }

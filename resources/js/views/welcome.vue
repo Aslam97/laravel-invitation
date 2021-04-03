@@ -1,9 +1,15 @@
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   layout: 'welcome',
 
   meta: {
     title: 'HuntBazaar'
+  },
+
+  computed: {
+    ...mapGetters('auth', ['user'])
   }
 }
 </script>
@@ -15,10 +21,18 @@ export default {
         HuntBazaar
       </h1>
       <RouterLink
+        v-if="!user"
         :to="{ name: 'login' }"
         class="btn btn-blue btn-block"
       >
-        Log In
+        Masuk
+      </RouterLink>
+      <RouterLink
+        v-else
+        :to="{ name: 'home' }"
+        class="btn btn-blue btn-block"
+      >
+        Home
       </RouterLink>
     </div>
   </div>
