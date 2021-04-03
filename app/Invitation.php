@@ -40,7 +40,7 @@ class Invitation extends Model
 
     public function SendEmailJoined()
     {
-        $when = now()->addMinutes(5);
+        $when = now()->addHours(1);
         $this->notify((new SendEmailJoined())->delay($when));
     }
 }
