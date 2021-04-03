@@ -43,9 +43,6 @@ html {
   width: 100%;
 }
 
-@import '@design/_btn.scss';
-@import '@design/_card.scss';
-
 .page {
   display: flex;
   flex-direction: column;
@@ -60,3 +57,11 @@ html {
   margin-left: auto;
   max-width: 27.5rem;
 }
+
+.w-100 {
+  width: 100% !important;
+}
+
+@import '@design/_btn.scss';
+@import '@design/_card.scss';
+@import '@design/_form.scss';

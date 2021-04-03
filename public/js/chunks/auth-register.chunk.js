@@ -30,11 +30,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       model: {
-        email: ''
-      }
+        name: '',
+        bod: '',
+        gender: '',
+        favorite_designer: []
+      },
+      genders: [{
+        id: 1,
+        label: 'Male',
+        value: 'M'
+      }, {
+        id: 2,
+        label: 'Female',
+        value: 'F'
+      }],
+      currentCountDown: '',
+      expired: false
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('invitation', ['invitation'])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('event', ['event'])),
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('invitation', ['invitation'])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('event', ['event'])), {}, {
+    countDownDate: function countDownDate() {
+      return new Date(this.event.expired_at).getTime();
+    }
+  }),
   mounted: function mounted() {
     var _this = this;
 
@@ -60,12 +78,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _this.$store.dispatch('event/show', _this.invitation.event_id);
 
             case 6:
+              _this.startCountDown();
+
+            case 7:
             case "end":
               return _context.stop();
           }
         }
       }, _callee);
     }))();
+  },
+  methods: {
+    startCountDown: function startCountDown() {
+      var _this2 = this;
+
+      var timer = setInterval(function () {
+        var now = new Date().getTime();
+        var distance = _this2.countDownDate - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+        var minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
+        var seconds = Math.floor(distance % (1000 * 60) / 1000);
+        _this2.currentCountDown = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's '; // If the count down is over, write some text
+
+        if (distance < 0) {
+          clearInterval(timer);
+          _this2.expired = true;
+        }
+      }, 1000);
+    }
   }
 });
 
@@ -155,6 +196,10 @@ var render = function() {
                   _vm._v("\n      " + _vm._s(_vm.event.name) + "\n    ")
                 ]),
                 _vm._v(" "),
+                _c("h4", { class: _vm.$style.event_name }, [
+                  _vm._v("\n      " + _vm._s(_vm.currentCountDown) + "\n    ")
+                ]),
+                _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
                 _c(
@@ -177,18 +222,159 @@ var render = function() {
                         _c("BaseInput", {
                           attrs: {
                             rules: "required|email",
+                            disabled: true,
                             name: "Alamat Email",
                             placeholder: "kamu@contoh.com",
                             label: true,
                             vid: "email"
                           },
                           model: {
-                            value: _vm.model.email,
+                            value: _vm.invitation.email,
                             callback: function($$v) {
-                              _vm.$set(_vm.model, "email", $$v)
+                              _vm.$set(_vm.invitation, "email", $$v)
                             },
-                            expression: "model.email"
+                            expression: "invitation.email"
                           }
+                        }),
+                        _vm._v(" "),
+                        _c("BaseInput", {
+                          attrs: {
+                            rules: "required",
+                            type: "text",
+                            name: "Name",
+                            label: true,
+                            vid: "name"
+                          },
+                          model: {
+                            value: _vm.model.name,
+                            callback: function($$v) {
+                              _vm.$set(_vm.model, "name", $$v)
+                            },
+                            expression: "model.name"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("ValidationProvider", {
+                          staticClass: "form-group",
+                          attrs: {
+                            tag: "div",
+                            name: "Birth of Date",
+                            rules: "required"
+                          },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "default",
+                                fn: function(ref) {
+                                  var errors = ref.errors
+                                  return [
+                                    _c("label", { staticClass: "form-label" }, [
+                                      _vm._v(
+                                        "\n            Birth of Date\n          "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("ElDatePicker", {
+                                      class: [
+                                        "w-100",
+                                        { "is-invalid": errors[0] }
+                                      ],
+                                      attrs: {
+                                        type: "date",
+                                        placeholder: "",
+                                        format: "dd MMM yyyy",
+                                        value: "yyyy-MM-dd"
+                                      },
+                                      model: {
+                                        value: _vm.model.bod,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.model, "bod", $$v)
+                                        },
+                                        expression: "model.bod"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "span",
+                                      { staticClass: "invalid-feedback" },
+                                      [_vm._v(_vm._s(errors[0]))]
+                                    )
+                                  ]
+                                }
+                              }
+                            ],
+                            null,
+                            true
+                          )
+                        }),
+                        _vm._v(" "),
+                        _c("ValidationProvider", {
+                          staticClass: "form-group",
+                          attrs: {
+                            tag: "div",
+                            name: "Gender",
+                            rules: "required"
+                          },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "default",
+                                fn: function(ref) {
+                                  var errors = ref.errors
+                                  return [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "form-label",
+                                        attrs: { for: "Nama stan" }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n            Gender\n          "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "ElSelect",
+                                      {
+                                        class: [
+                                          "w-100",
+                                          { "is-invalid": errors[0] }
+                                        ],
+                                        attrs: { placeholder: "" },
+                                        model: {
+                                          value: _vm.model.gender,
+                                          callback: function($$v) {
+                                            _vm.$set(_vm.model, "gender", $$v)
+                                          },
+                                          expression: "model.gender"
+                                        }
+                                      },
+                                      _vm._l(_vm.genders, function(gender) {
+                                        return _c("ElOption", {
+                                          key: gender.id,
+                                          attrs: {
+                                            label: gender.label,
+                                            value: gender.value
+                                          }
+                                        })
+                                      }),
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "span",
+                                      { staticClass: "invalid-feedback" },
+                                      [_vm._v(_vm._s(errors[0]))]
+                                    )
+                                  ]
+                                }
+                              }
+                            ],
+                            null,
+                            true
+                          )
                         }),
                         _vm._v(" "),
                         _c("BaseInput", {
@@ -210,7 +396,7 @@ var render = function() {
                         _c(
                           "button",
                           { staticClass: "btn btn-blue btn-block btn-md" },
-                          [_vm._v("\n          Masuk\n        ")]
+                          [_vm._v("\n          Join\n        ")]
                         )
                       ],
                       1
@@ -229,6 +415,41 @@ var render = function() {
 var staticRenderFns = []
 render._withStripped = true
 
+
+
+/***/ }),
+
+/***/ "./node_modules/webpack/buildin/harmony-module.js":
+/*!*******************************************!*\
+  !*** (webpack)/buildin/harmony-module.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = function(originalModule) {
+	if (!originalModule.webpackPolyfill) {
+		var module = Object.create(originalModule);
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		Object.defineProperty(module, "exports", {
+			enumerable: true
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
 
 
 /***/ }),
