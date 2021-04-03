@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/chunks/" + ({"auth-login":"auth-login","event-show":"event-show","home":"home","welcome":"welcome"}[chunkId]||chunkId) + ".chunk.js"
+/******/ 		return __webpack_require__.p + "js/chunks/" + ({"auth-login":"auth-login","errors-404":"errors-404","event-show":"event-show","home":"home","welcome":"welcome"}[chunkId]||chunkId) + ".chunk.js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -28046,6 +28046,14 @@ var map = {
 	"./auth/login.vue": [
 		"./resources/js/views/auth/login.vue",
 		"auth-login"
+	],
+	"./errors/404": [
+		"./resources/js/views/errors/404.vue",
+		"errors-404"
+	],
+	"./errors/404.vue": [
+		"./resources/js/views/errors/404.vue",
+		"errors-404"
 	],
 	"./event/show": [
 		"./resources/js/views/event/show.vue",

@@ -8,5 +8,7 @@
     "/js/chunks/home.chunk.js": "/js/chunks/home.chunk.js",
     "/js/chunks/home.chunk.js.map": "/js/chunks/home.chunk.js.map",
     "/js/chunks/event-show.chunk.js": "/js/chunks/event-show.chunk.js",
-    "/js/chunks/event-show.chunk.js.map": "/js/chunks/event-show.chunk.js.map"
+    "/js/chunks/event-show.chunk.js.map": "/js/chunks/event-show.chunk.js.map",
+    "/js/chunks/errors-404.chunk.js": "/js/chunks/errors-404.chunk.js",
+    "/js/chunks/errors-404.chunk.js.map": "/js/chunks/errors-404.chunk.js.map"
 }
